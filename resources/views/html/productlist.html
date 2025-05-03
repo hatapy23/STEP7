@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ asset('app.css') }}">
+
+        <title>商品情報一覧画面</title>
+    </head>
+    <body class="antialiased">
+        <style>
+            .table container{
+                border: 1px solid #333; /* 枠線の色と太さ */
+                padding: 20px; /* 内側の余白 */
+                margin: 40px auto; /* 外側の余白 */
+                max-width: 600px; /* 最大幅を指定 */
+                background-color: #fff; /* 背景色 */
+                border-radius: 2px; /* 角を丸くする（任意） */
+            }
+            .product-table {
+                margin-top: 10px;
+            }
+            .product-table th, .product-table td {
+                text-align: left; /* 左寄せ */
+                padding: 10px;
+              }
+            .search-form {
+                display: flex;
+                align-items: center;
+                gap: 10px; /* 要素間のスペース */
+            }
+            .search-input,.company-select,.search-button {
+                padding: 5px; /* ボックスの内側の余白 */
+            }
+            .search-button {
+                cursor: pointer; /* カーソルをポインターに変更 */
+            }
+            /* ボタン（オレンジ） */
+            
+            input[type="submit"] {
+                background-color: rgb(230, 137, 65);
+                color: white;
+                border: none;
+                box-sizing: border-box;
+                padding: 10px 20px;
+                cursor: pointer;
+            }
+
+/* 戻るボタン（水色） */
+input[type="button"] {
+    background-color: rgb(125, 183, 216);
+    color: white;
+    border: none;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* ボタンを横並びにするためのコンテナ */
+.button-container {
+    display: flex;
+    gap: 10px; /* ボタン間の余白 */
+    justify-content: center; /* 中央揃え */
+    margin-top: 20px; /* ボタンとフォーム間の間隔 */
+}
+        </style>
+<h2>商品一覧画面</h2>
+<!-- 検索フォーム -->
+<form action="{{ route('productslist') }}" method="GET" class="search-form">
+    <label>
+        <input type="text" name="keyword" placeholder="キーワードを入力" class="search-input">
+    </label>
+    <label class="company_name">メーカー名:</label>
+    <select id="company_name" name="manufacturer" class="company-select">
+        <option value="">すべて</option>
+        <option value="メーカーA" {{ request('manufacturer') == 'メーカーA' ? 'selected' : '' }}>メーカーA</option>
+        <option value="メーカーB" {{ request('manufacturer') == 'メーカーB' ? 'selected' : '' }}>メーカーB</option>
+    </select>
+    <button type="submit" aria-label="検索" class="search-button">検索</button>
+</form>
+
+<!-- 商品一覧テーブル -->
+<div class =product-table>
+    <table border="2" rules="rows">
+        <tr>
+            <th>ID</th>
+            <th>商品画像</th>
+            <th>商品名</th>
+            <th>価格</th>
+            <th>在庫数</th>
+            <th>メーカー名</th>
+            <th><button type="submit">新規登録</button></th>
+        </tr>
+        <!-- サンプルの商品のループ例 -->
+        <tr>
+            <td>{{ $product->id }}</td>
+            <td><img src="{{ $product->image_path }}" alt="商品画像" width="50" height="50"></td>
+            <td>{{ $product->product_name }}</td>
+            <td>{{ $product->price }}円</td>
+            <td>{{ $product->stock }}</td>
+            <td>{{ $product->company_name }}</td>
+            <td>
+                <!-- 詳細・削除操作 -->
+                <button type="submit">詳細</button>
+                <button type="button">削除</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</html>

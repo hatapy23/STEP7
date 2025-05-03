@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
+<<<<<<< HEAD
                     {{ __('You are logged in!') }}
+=======
+                    {{ __('ログインしました!') }}
+>>>>>>> 95c97ed (Initial Commit)
                 </div>
             </div>
         </div>

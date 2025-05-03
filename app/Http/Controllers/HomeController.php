@@ -1,9 +1,14 @@
 <?php
+<<<<<<< HEAD
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+=======
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+>>>>>>> 95c97ed (Initial Commit)
 class HomeController extends Controller
 {
     /**

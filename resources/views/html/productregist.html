@@ -1,0 +1,89 @@
+<!-- resources/views/productregist.blade.php -->
+<title>商品情報登録</title>
+
+<!-- cssに入力 -->
+<style>
+    h2 {
+    text-align: center;      /* 中央揃え */
+    font-size: 1.8em;        /* フォントサイズ */
+    color: #333;             /* 色 */
+    margin-bottom: 20px;     /* 下の余白 */
+    }
+    .form-container {
+        border: 1px solid #333; /* 枠線の色と太さ */
+        padding: 20px; /* 内側の余白 */
+        margin: 20px auto; /* 外側の余白 */
+        max-width: 600px; /* 最大幅を指定 */
+        background-color: #fff; /* 背景色 */
+        border-radius: 2px; /* 角を丸くする（任意） */
+    }
+
+    /* テーブルのスタイル */
+    table {
+        width: 100%; /* テーブルを全幅に */
+        border-collapse: collapse; /* セルのボーダーを結合 */
+    }
+
+    td {
+        padding: 10px; /* セル内の余白 */
+    }
+
+    /* その他のスタイル（任意） */
+    label {
+        font-weight: bold; /* ラベルを太字に */
+    }
+
+    .button {
+        margin-top: 20px; /* ボタンの上の余白 */
+        text-align: left; /* ボタンを右寄せ */
+    }
+</style>
+
+<!-- resources/views/productslist.blade.php -->
+<h2>商品新規登録画面</h2>
+<div class="form-container">
+    <div cals="form">
+        <form action="{{ route('productslist') }}" method="POST">
+            <br>
+            <table>
+                   <tr>
+                       <td><label for="product_name">商品名</label></th>
+                       <td><input type="text" id="product_name" name="product_name" required></td>
+                   </tr>
+                   <tr>
+                       <td><label for="company_name">メーカー</label></th>
+                       <td><select id="company_id" name="company" required>
+                               @foreach ($company_name as $company_name)
+                               <option value="company_name"></option>
+                               <option value="company_name">{{products->company_name>}}</option></td>
+                   </tr>
+                   <tr>
+                       <td><label for="price">価格</label></th>
+                       <td><input type="text" id="price" name="price" required><td>
+                   <tr>
+                   <tr>
+                       <td> <label for="stock">在庫数</label></th>
+                       <td><input type="text" id="stock" name="stock" required></td>
+                   </tr>
+                   <tr>
+                       <td><label for="comments">コメント</label></th>
+                       <td><textarea id="comments" name="comments" rows="4"></textarea></td>
+                   </tr>
+                   <tr>
+                       <td><label for="img_path">商品画像</label></th>
+                       <td><input type="file" id="img_path" name="img_path" accept="image/*" required></td>
+                   </tr>
+               </table>
+           </form> 
+    
+    </div>
+    
+    <div class="button">
+        <br><br>
+        <!-- 新規登録ボタン -->
+        <a href="{{ route('productregister') }}"><button type="submit">新規登録</button></a>
+        <button type="button" onclick="window.history.back()"a href="{{ route('productslist') }}">戻る</button>
+    </div>
+</div>
+</body>
+

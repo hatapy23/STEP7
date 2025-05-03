@@ -1,7 +1,11 @@
 <?php
+<<<<<<< HEAD
 
 namespace App\Http\Controllers\Auth;
 
+=======
+namespace App\Http\Controllers\Auth;
+>>>>>>> 95c97ed (Initial Commit)
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -25,7 +29,11 @@ class LoginController extends Controller
      *
      * @var string
      */
+<<<<<<< HEAD
     protected $redirectTo = '/home';
+=======
+    protected $redirectTo = '/products_list';
+>>>>>>> 95c97ed (Initial Commit)
 
     /**
      * Create a new controller instance.
