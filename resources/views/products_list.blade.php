@@ -14,7 +14,7 @@
             </option>
         @endforeach
       </select>
-      <button type="submit" class="btn btn-primary search-btn">検索</button>
+      <button type="submit" class="btn btn-primary search-btn ">検索</button>
     </form>
   </div>
 
@@ -22,6 +22,7 @@
   <table class="table table-bordered border-secondary text-left">
     <thead>
       <tr>
+      <div class="d-flex gap-2 justify-content-center">
         <th>ID</th>
         <th>商品画像</th>
         <th>商品名</th>
@@ -33,25 +34,28 @@
            <button type="submit" class="btn btn-warning">新規登録</button>
           </form>
         </th>
-        </tr>
+      </div> 
+      </tr>
     </thead>
     <tbody>
       <form action="{{ route('show.list') }}" method="get" enctype="multipart/form-data">
       @foreach ($products as $product)
         <tr>
           <td>{{ $product->id }}</td>
-          <td><img src="{{ asset($product->img_path) }}" alt="商品画像" class="product_img"></td>
+          <td><img src="{{ asset($product->img_path) }}" alt="商品画像" class="product_img" width="50px"></td>
           <td>{{ $product->product_name }}</td>
           <td>{{ $product->price }}円</td>
           <td>{{ $product->stock }}</td>
           <td>{{ $product->company_name }}</td>
-          <td class = action-button>
-            <a href="{{ route('show.detail', $product->id) }}" class="btn btn-info d-inline-block">詳細</a>
-            <form action="{{ route('delete.list', $product->id) }}" method="post">
-              @csrf
-              @method('DELETE')
-             <button type="submit" class="btn btn-danger d-inline-block" onclick="return confirm('本当に削除しますか？')">削除</button>
-            </form>
+          <td class = "action-button">
+            <div class="d-flex gap-2 justify-content-center">
+              <a href="{{ route('show.detail', $product->id) }}" class="btn btn-info d-inline-block">詳細</a>
+              <form action="{{ route('delete.list', $product->id) }}" method="post" class="d-inline-block">
+                @csrf
+                @method('DELETE')
+               <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？')">削除</button>
+              </form>
+            </div>
           </td>
         </tr>
       @endforeach
