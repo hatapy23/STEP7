@@ -1,12 +1,7 @@
 <?php
-<<<<<<< HEAD
-
-use Illuminate\Support\Facades\Route;
-
-=======
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
->>>>>>> 95c97ed (Initial Commit)
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,19 +12,11 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-<<<<<<< HEAD
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
-Route::get('/', function () {
-    return view('welcome');
-});
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -47,4 +34,3 @@ Route::get('/products_detail/{id}', [App\Http\Controllers\ProductController::cla
 //商品編集
 Route::get('/products_editor/{id}', [App\Http\Controllers\ProductController::class, 'editList'])->name('edit.list');
 Route::put('/products_editor/{id}', [App\Http\Controllers\ProductController::class, 'updateList'])->name('update.list');
->>>>>>> 95c97ed (Initial Commit)

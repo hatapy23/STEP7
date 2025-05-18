@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Providers;
-
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -17,11 +15,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-<<<<<<< HEAD
+
     public const HOME = '/home';
-=======
-    public const HOME = '/products_list';
->>>>>>> 95c97ed (Initial Commit)
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

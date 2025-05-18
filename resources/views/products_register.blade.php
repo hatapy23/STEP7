@@ -5,15 +5,6 @@
   <h2>商品新規登録画面</h2>
   <form action="{{ route('send.form') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <div class="row mb-3 align-items-center text-md-end">
       <label for="product_name" class="col-sm-2 col-form-label">商品名 <span class="text-danger">*</span></label>
       <div class="col-sm-6">
@@ -60,11 +51,6 @@
       <label for="img_path" class="col-sm-2 col-form-label">商品画像</label>
       <div class="col-sm-6">
         <input type="file" id="img_path" name="img_path" class="form-control" accept="image/*">
-        @if ($product->img_path)
-        <img src="{{ asset($product->img_path) }}" alt="商品画像" width="200">
-        @else
-        画像はありません
-        @endif
      </div>
     </div>
 

@@ -64,11 +64,14 @@ public function sendForm(ProductRequest $request){
 
       // 画像処理
       if ($request->hasFile('img_path')) {
-          $image = $request->file('img_path');
-          $file_name = $image->getClientOriginalName();
-          $image->storeAs('public/images', $file_name);
+         $image = $request->file('img_path');
+         $file_name = $image->getClientOriginalName();
+          if ($image->storeAs('public/images', $file_name)) {
           $data['img_path'] = 'storage/images/' . $file_name;
-      }
+        } else {
+          // 保存に失敗した場合のエラーメッセージをセット
+          return redirect()->back()->withErrors(['image_error' => '画像のアップロードに失敗しました。']);
+      }}
 
       Product::create($data);
       DB::commit();

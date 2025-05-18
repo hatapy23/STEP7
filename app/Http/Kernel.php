@@ -1,11 +1,6 @@
 <?php
- HEAD
 namespace App\Http;
-
-namespace App\Http;
-95c97ed (Initial Commit)
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-
 class Kernel extends HttpKernel
 {
     /**

@@ -9,7 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
 
                 'resources/css/app.css',
- 95c97ed (Initial Commit)
+ //95c97ed (Initial Commit)
             ],
             refresh: true,
         }),
