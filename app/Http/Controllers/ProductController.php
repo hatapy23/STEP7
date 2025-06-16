@@ -90,6 +90,7 @@ public function sendForm(ProductRequest $request){
       ->where('products.id', $id)
       ->first();
       $companies = Company::all();
+      
     return view ('products_detail', compact('product','companies'));
   }
 
@@ -102,12 +103,21 @@ public function sendForm(ProductRequest $request){
     $companies = Company::all();
     return view('products_editor', compact('product','companies'));
   }
+
   //編集画面：データを編集
   public function updateList(ProductRequest $request, $id){
-    $data = request();
+    $data = $request;
+
+    // メーカー名から company_id を取得
+    $company = Company::where('company_name', $data->input('company_name'))->first();
+
+    if (!$company) {
+        return redirect()->back()->withErrors(['error' => '指定されたメーカーが見つかりません。']);
+    }
+
     // 画像処理
     $img_path = null;
-    if ($data->hasFile('img_path')) {//'image'に変更
+    if ($data->hasFile('img_path')) {
         $image = $data->file('img_path');
         $file_name = $image->getClientOriginalName();
         $image->storeAs('public/images', $file_name);
@@ -115,21 +125,19 @@ public function sendForm(ProductRequest $request){
     }
 
     try {
-        DB::table('products')
-            ->where('id', $id)
-            ->update([
-                'product_name' => $data->input('product_name'),
-                'price' => $data->input('price'),
-                'stock' => $data->input('stock'),
-                'comment' => $data->input('comment'),
-                'img_path' => $img_path,
-            ]);
+        $updateData = [
+            'product_name' => $data->input('product_name'),
+            'price' => $data->input('price'),
+            'stock' => $data->input('stock'),
+            'comment' => $data->input('comment'),
+            'company_id' => $company->id,
+        ];
 
-        DB::table('companies')
-            ->where('id', $id)
-            ->update([
-                'company_name' => $data->input('company_name')
-            ]);
+        if ($img_path) {
+            $updateData['img_path'] = $img_path;
+        }
+
+        DB::table('products')->where('id', $id)->update($updateData);
 
         return redirect()->route('edit.list', $id)->with('success', '商品情報が更新されました');
         

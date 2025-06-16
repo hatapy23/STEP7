@@ -9,8 +9,8 @@
     <div class="col-sm-6 text-md-start">{{ $product->id }}</div>
   </div>
 
-  <div class="row mb-3 align-items-center text-md-end">
-    <label class="col-sm-2 col-form-label fw-bold product-img">商品画像</label>
+  <div class="row mb-3 align-items-center">
+    <label class="col-sm-2 col-form-label text-md-end fw-bold product-img">商品画像</label>
     <div class="col-sm-6">
       <img src="{{ asset($product->img_path) }}" alt="商品画像" width="50px">
     </div>

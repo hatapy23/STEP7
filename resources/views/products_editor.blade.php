@@ -8,19 +8,19 @@
     @method('PUT')
 
     <div class="row mb-3 align-items-center text-md-end">
-      <label for="id" class="col-sm-2 col-form-label">商品ID </label>
+      <label for="id" class="col-sm-2 col-form-label fw-bold">商品ID </label>
       <div class="col-sm-6 text-md-start">{{ $product->id }}</div>
     </div>
 
     <div class="row mb-3 align-items-center text-md-end">
-      <label for="product_name" class="col-sm-2 col-form-label">商品名 <span class="text-danger">*</span></label>
+      <label for="product_name" class="col-sm-2 col-form-label fw-bold">商品名 <span class="text-danger">*</span></label>
       <div class="col-sm-6">
         <input type="text" class="form-control" id="product_name" name="product_name" value="{{ $product->product_name }}" required>
       </div>
     </div>
 
     <div class="row mb-3 align-items-center text-md-end">
-      <label for="company_name" class="col-sm-2 col-form-label">メーカー名 <span class="text-danger">*</span></label>
+      <label for="company_name" class="col-sm-2 col-form-label fw-bold">メーカー名 <span class="text-danger">*</span></label>
       <div class="col-sm-6">
         <select name="company_name" class="form-select" required>
           <option value="">メーカー名</option>
@@ -34,30 +34,30 @@
     </div>
 
     <div class="row mb-3 align-items-center text-md-end">
-      <label for="price" class="col-sm-2 col-form-label">価格 <span class="text-danger">*</span></label>
+      <label for="price" class="col-sm-2 col-form-label fw-bold">価格 <span class="text-danger">*</span></label>
       <div class="col-sm-6">
         <input type="text" class="form-control" id="price" name="price" value="{{ $product->price }}" required>
       </div>
     </div>
 
     <div class="row mb-3 align-items-center text-md-end">
-      <label for="stock" class="col-sm-2 col-form-label">在庫数 <span class="text-danger">*</span></label>
+      <label for="stock" class="col-sm-2 col-form-label fw-bold">在庫数 <span class="text-danger">*</span></label>
       <div class="col-sm-6">
         <input type="text" class="form-control" id="stock" name="stock" value="{{ $product->stock }}" required>
       </div>
     </div>
 
     <div class="row mb-3 align-items-center text-md-end">
-      <label for="comment" class="col-sm-2 col-form-label">コメント</label>
+      <label for="comment" class="col-sm-2 col-form-label fw-bold">コメント</label>
       <div class="col-sm-6">
         <textarea id="comment" name="comment" class="form-control" rows="4">{{ $product->comment }}</textarea>
       </div>
     </div>
 
     <div class="row mb-3 align-items-center text-md-end">
-      <label for="image" class="col-sm-2 col-form-label text-md-end">商品画像</label>
+      <label for="image" class="col-sm-2 col-form-label fw-bold text-md-end">商品画像</label>
       <div class="col-sm-6">
-        <input type="file" id="image" name="image" class="form-control" accept="image/*">
+        <input type="file" id="image" name="img_path" class="form-control" accept="image/*">
       </div>
     </div>
 
