@@ -1,11 +1,7 @@
 <?php
-<<<<<<< HEAD
 
 namespace App\Http\Middleware;
 
-=======
-namespace App\Http\Middleware;
->>>>>>> 95c97ed (Initial Commit)
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
@@ -27,11 +23,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-<<<<<<< HEAD
                 return redirect(RouteServiceProvider::HOME);
-=======
-                return redirect()->route('show.list');
->>>>>>> 95c97ed (Initial Commit)
             }
         }
 
