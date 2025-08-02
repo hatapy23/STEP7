@@ -19,26 +19,7 @@ public function deleteList($id){
 public function showList(){
   $keyword = request()->input('keyword');
   $company_name = request()->input('company_name');
-  
-  $query = Product::query()
-    ->join('companies', 'products.company_id', '=', 'companies.id')
-    ->select('products.*', 'companies.company_name');
-
-  // キーワード検索
-  if (!empty($keyword)) {
-    $query->where(function ($query) use ($keyword) {
-    $query->where('products.product_name','like', '%' . $keyword . '%')
-      ->orWhere('companies.company_name', 'like', '%' . $keyword . '%');
-      });
-    }
-
-  // メーカー名で絞り込み
-  if (!empty($company_name)) {
-    $query->where('companies.company_name', $company_name);
-  }
-
-  // データ取得
-  $products = $query->get();
+  $products = Product::getList($keyword, $company_name);
   $companies = Company::all();
   return view('products_list',compact('products', 'companies', 'keyword', 'company_name'));
 }
