@@ -66,21 +66,14 @@ public function sendForm(ProductRequest $request){
 
   //詳細画面の表示
   public function showDetail($id) {
-    $product = Product::join('companies', 'products.company_id', '=', 'companies.id')
-      ->select('products.*', 'companies.company_name')
-      ->where('products.id', $id)
-      ->first();
-      $companies = Company::all();
-      
+    $product = Product::getProduct($id);  
+    $companies = Company::all();  
     return view ('products_detail', compact('product','companies'));
   }
 
   //編集画面：データを表示
   public function editList($id) {
-    $product = Product::join('companies', 'products.company_id', '=', 'companies.id')
-    ->select('products.*', 'companies.company_name')
-    ->where('products.id', $id)
-    ->first();
+    $product = Product::getProduct($id);
     $companies = Company::all();
     return view('products_editor', compact('product','companies'));
   }
