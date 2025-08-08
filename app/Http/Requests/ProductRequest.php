@@ -9,8 +9,7 @@ class ProductRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize(){
         return true;
     }
 
@@ -19,11 +18,7 @@ class ProductRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
-    {
-        Validator::extend('half_width_numeric', function ($attribute, $value, $parameters, $validator) {
-            return preg_match('/^[0-9]+$/', $value);
-        });
+    public function rules(){
         return [
             'product_name' => ['required', 'max:255'],
             'company_name' => ['required', 'max:255'],
@@ -31,6 +26,16 @@ class ProductRequest extends FormRequest
             'stock' => ['required', 'integer', 'min:0', 'half_width_numeric'],
             'comment' => 'nullable|max:10000',
             'img_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ];
+    }
+    public function attributes(){
+        return [
+            'product_name' => '商品名',
+            'company_name' => 'メーカー名',
+            'price' => '価格',
+            'stock' => '在庫数',
+            'comment' => 'コメント',
+            'img_path' => '商品画像',
         ];
     }
     public function messages(){

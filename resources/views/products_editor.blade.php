@@ -15,14 +15,17 @@
     <div class="row mb-3 align-items-center text-md-end">
       <label for="product_name" class="col-sm-2 col-form-label fw-bold">商品名 <span class="text-danger">*</span></label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" id="product_name" name="product_name" value="{{ $product->product_name }}" required>
+        <input type="text" class="form-control" id="product_name" name="product_name" value="{{ $product->product_name }}" >
+        @error('product_name')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
       </div>
     </div>
 
     <div class="row mb-3 align-items-center text-md-end">
       <label for="company_name" class="col-sm-2 col-form-label fw-bold">メーカー名 <span class="text-danger">*</span></label>
       <div class="col-sm-6">
-        <select name="company_name" class="form-select" required>
+        <select name="company_name" class="form-select" >
           <option value="">メーカー名</option>
           @foreach ($companies as $company)
             <option value="{{ $company->company_name }}" {{ $product->company_name == $company->company_name ? 'selected' : '' }}>
@@ -30,20 +33,29 @@
             </option>
           @endforeach
         </select>
+        @error('company_name')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
       </div>
     </div>
 
     <div class="row mb-3 align-items-center text-md-end">
       <label for="price" class="col-sm-2 col-form-label fw-bold">価格 <span class="text-danger">*</span></label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" id="price" name="price" value="{{ $product->price }}" required>
+        <input type="text" class="form-control" id="price" name="price" value="{{ $product->price }}" >
+        @error('price')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
       </div>
     </div>
 
     <div class="row mb-3 align-items-center text-md-end">
       <label for="stock" class="col-sm-2 col-form-label fw-bold">在庫数 <span class="text-danger">*</span></label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" id="stock" name="stock" value="{{ $product->stock }}" required>
+        <input type="text" class="form-control" id="stock" name="stock" value="{{ $product->stock }}" >
+        @error('stock')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
       </div>
     </div>
 
