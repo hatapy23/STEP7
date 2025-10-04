@@ -48,9 +48,17 @@ class Product extends Model{
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function company(): BelongsTo
-    {
+    public function company(): BelongsTo{
         return $this->belongsTo(Company::class);
     }
 
+    /**
+     * Saleモデルとのリレーション定義
+     * Productは複数のSaleを持つ (一対多)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sales(){
+        return $this->hasMany(Sale::class);
+    }
 }

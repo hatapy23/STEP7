@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
@@ -10,19 +11,58 @@ class ProductController extends Controller
 {
 //商品一覧画面：データ削除
 public function deleteList($id){
-  $delete_product = Product::findorFail($id); 
-  $delete_product->delete();
-  return redirect('products_list')->with('success', '商品を削除しました。');
+  $deletePoduct = Product::findorFail($id); 
+  if (!$deleteProduct) {
+    return response()->json(['error' => '商品が見つかりません'], 404);
+  }
+  $deleteProduct->delete();
+    return response()->json(['message' => '商品を削除しました']);
 }
 
 //商品一覧画面：データを表示
-public function showList(){
-  $keyword = request()->input('keyword');
-  $company_name = request()->input('company_name');
-  $products = Product::getList($keyword, $company_name);
-  $companies = Company::all();
-  return view('products_list',compact('products', 'companies', 'keyword', 'company_name'));
+public function showList(Request $request){
+    $keyword = $request->input('keyword');
+    $companyName = $request->input('company_name');
+    $minPrice = $request->input('min_price');
+    $maxPrice = $request->input('max_price');
+    $minStock = $request->input('min_stock');
+    $maxStock = $request->input('max_stock');
+
+    $query = Product::with('company');
+    if (!empty($keyword)) {
+        $query->where('product_name', 'like', "%{$keyword}%");
+    }
+    if (!empty($companyName)) {
+        $query->whereHas('company', function ($q) use ($companyName) {
+            $q->where('company_name', $companyName);
+        });
+    }
+
+    if (!empty($minPrice)) {
+        $query->where('price', '>=', $minPrice);
+    }
+    if (!empty($maxPrice)) {
+        $query->where('price', '<=', $maxPrice);
+    }
+    
+    if (!empty($minStock)) {
+        $query->where('stock', '>=', $minStock);
+    }
+    if (!empty($maxStock)) {
+        $query->where('stock', '<=', $maxStock);
+    }
+    $products = $query->get();
+    $companies = Company::all();
+
+    // Ajaxリクエストなら、ビューの一部だけを返す
+    if ($request->ajax()) {
+        $html = view('products_partials', compact('products'))->render();
+        return response()->json(['html' => $html]);
+    }
+    // Ajaxでなければ通常のビューを返す
+    return view('products_list', compact('products', 'companies', 'keyword', 'companyName'));
 }
+
 
 //商品情報登録画面：画面を表示
 public function showForm(){
