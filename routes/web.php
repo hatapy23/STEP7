@@ -22,7 +22,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //商品一覧
 Route::get('/products_list', [App\Http\Controllers\ProductController::class, 'showList'])->name('show.list');
-Route::delete('/products/{id}', [App\Http\Controllers\ProductController::class, 'deleteList'])->name('delete.list');
+Route::delete('/products_list/{id}', [App\Http\Controllers\ProductController::class, 'deleteList'])->name('delete.list');
 
 //商品登録
 Route::get('/products_register', [App\Http\Controllers\ProductController::class, 'showForm'])->name('show.form');

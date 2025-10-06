@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
 //商品一覧画面：データ削除
 public function deleteList($id){
-  $deletePoduct = Product::findorFail($id); 
+  $deleteProduct = Product::findOrFail($id); 
   if (!$deleteProduct) {
     return response()->json(['error' => '商品が見つかりません'], 404);
   }
